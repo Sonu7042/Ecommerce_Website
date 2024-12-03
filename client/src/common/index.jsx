@@ -1,6 +1,7 @@
 
 
-const domain="http://localhost:9000"
+// const domain="http://localhost:9000"
+const domain= "https://ecommerce-website-alpha-five.vercel.app"
 
 
 const SummaryApi={
