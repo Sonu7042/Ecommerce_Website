@@ -14,7 +14,7 @@ const Header = () => {
   
 
   const [menuDisplay, setMenuDisplay] = useState(false);
-  console.log(menuDisplay)
+
 
   const user = useSelector((state) => state?.user);
   
@@ -67,11 +67,14 @@ const Header = () => {
             )}
 
             {menuDisplay && (
-              <div className="absolute bg-red-600 bottom-0 top-11 h-fit rounded-full">
-                <nav>{user?.role === role.ADMIN && <Link to={"/login"} />}</nav>
+             
+              <div className="absolute bg-white bottom-0 top-11 h-fit rounded-full">
+                <nav>{user?.role === role.ADMIN && (
+                  <Link to={"/adminpanel"} className="whitespace-nowrap  md:block  w-full h-full rounded-full hover:bg-slate-100 p-2" onClick={()=>setMenuDisplay((pre)=>!pre)}> Admin Panel</Link>
+                )}</nav>
               </div>
             )}
-          </div>
+          </div>  
 
 
           {user?._id && (

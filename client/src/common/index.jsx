@@ -1,7 +1,7 @@
 
 
-// const domain="http://localhost:9000"
-const domain= "https://ecommerce-website-alpha-five.vercel.app"
+const domain="http://localhost:9000"
+// const domain= "https://ecommerce-website-alpha-five.vercel.app"
 
 
 const SummaryApi={
@@ -18,6 +18,14 @@ const SummaryApi={
     current_user:{
         url: `${domain}/user-details `,
         method:"get"
+    },
+    allUsers:{
+        url:`${domain}/alluser`,
+        metthod:"get"
+    },
+    updateUser:{
+        url:`${domain}/update-user`,
+        method:"post"
     }
 
 

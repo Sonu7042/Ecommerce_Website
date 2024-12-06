@@ -24,7 +24,7 @@ const userSignUpController = async (req, res) => {
       name: name,
       email: email,
       password: hashPassword,
-      role: "ADMIN",
+      role: "GENERAL",
       profilePic: profilePic,
     };
 
