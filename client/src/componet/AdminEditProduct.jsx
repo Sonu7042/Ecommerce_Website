@@ -9,16 +9,20 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import DisplayImage from "./DisplayImage";
 
-const UploadProduct = ({onClose, fetchData}) => {
+const AdminEditProduct = ({onClose, productData, fetchAllData}) => {
   const [data, setData] = useState({
-    productName: "",
-    brandName: "",
-    category: "",
-    productImages: [],
-    description: "",
-    price: "",
-    sellingPrice: "",
+    ...productData,
+    productName: productData?.productName,
+    brandName: productData?.brandName,
+    category: productData?.category, 
+    productImages: productData?.productImages, 
+    description: productData?.description,
+     price: productData?.price,
+      sellingPrice: productData?.sellingPrice
   });
+
+  // console.log(data)
+
 
 
 
@@ -49,23 +53,30 @@ const UploadProduct = ({onClose, fetchData}) => {
   }
 
 
+  // const payload={
+  //   data:data,
+  //   id : productData.id
+  // }
 
+   console.log("id",productData.id)
+  
   const handleSubmit= async(e)=>{
     e.preventDefault()
     console.log(data)
 
-    const response =  await axios.post(SummaryApi.uploadProduct.url, data, {
+    const response =  await axios.post(SummaryApi.updateProduct.url, data, {
       headers:{
         token: localStorage.getItem('token')
       }
     })
-     console.log(response)
+    
 
     if(response.data.success){
       toast.success(response.data.message)
       onClose()
-      fetchData()
+      fetchAllData()
     }
+    
 
   
   }
@@ -75,7 +86,7 @@ const UploadProduct = ({onClose, fetchData}) => {
       <div className="bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden ">
 
         <div className="flex justify-center items-center pb-3 relative">
-          <h2 className="font-bold text-lg ">Upload Product</h2>
+          <h2 className="font-bold text-lg ">Edit Product</h2>
           <div className="absolute top-0 right-0 text-2xl hover:text-red-600 cursor-point"  onClick={onClose}>
             <CgCloseO />
           </div>
@@ -230,24 +241,19 @@ const UploadProduct = ({onClose, fetchData}) => {
 
 
 
-          <button className="bg-red-600 px-3 py-2  text-white mb-10 mt-5 hover:bg-red-700">Upload Product</button>
+          <button className="bg-red-600 px-3 py-2  text-white mb-10 mt-5 hover:bg-red-700">Update Product</button>
         </form> 
       </div>
+
 
       {
         openFullScreenImage && (
           <DisplayImage  onClose={()=> setOpenFullScreenImage(false)}  imgUrl={fullScreenImage}  />
         )
-
-
-        
-
       }
-
-
 
     </div>
   );
 };
 
-export default UploadProduct;
+export default AdminEditProduct;
