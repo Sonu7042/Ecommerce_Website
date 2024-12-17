@@ -10,21 +10,25 @@ import Login from "../page/Login.jsx";
 import AdminPanel from "../page/AdminPanel.jsx";
 import Allusers from "../page/Allusers.jsx";
 import AllProducts from "../page/AllProducts.jsx";
+import ProductDetails from "../page/ProductDetails.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index element={<Home />} /> {/* Use 'index' for the default child route */}
+      <Route index element={<Home />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="login" element={<Login />} />
 
       <Route path="adminpanel" element={<AdminPanel />}>
-        <Route path="allUsers" element={<Allusers />} /> {/* Relative path */}
-        <Route path="allProducts" element={<AllProducts />} /> {/* Relative path */}
+        <Route path="allUsers" element={<Allusers />} />
+        <Route path="allProducts" element={<AllProducts />} />
       </Route>
+
+      <Route path="product/:id"  element={<ProductDetails/>}/>
+      
+
     </Route>
   )
 );
-
 
 export default router;

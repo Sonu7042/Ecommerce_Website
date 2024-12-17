@@ -10,12 +10,12 @@ const AdminProductCard = ({ data, fetchData }) => {
     <div className="bg-white p-2 rounded">
       <div className="w-40">
         <div className="w-32 h-32 flex justify-center items-start">
-          <img
+          <img 
             src={data.productImages[0]}
             alt="image"
             width={120}
             height={120}
-            className="m-auto object-fill"
+            className="m-auto object-fill h-full"
           />
         </div>
 

@@ -24,7 +24,7 @@ const UploadProduct = ({onClose, fetchData}) => {
 
   const [openFullScreenImage, setOpenFullScreenImage] = useState(false);
   const [fullScreenImage, setFullScreenImage] = useState("");
-
+  
 
   const handleOnChange = (e) => {
     setData({...data,[e.target.name]: e.target.value})

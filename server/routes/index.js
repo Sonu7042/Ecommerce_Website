@@ -15,6 +15,12 @@ const allUsers = require('../controller/user/allUsers')
 const uploadProductController= require('../controller/product/uploadProduct')
 const getProductController= require('../controller/product/getProduct')
 const updateProductController = require('../controller/product/updateProduct')
+const getCategoryProduct = require('../controller/product/getCategoryProduct')
+const getCategoryyWiseProduct = require('../controller/product/getCategoryWiseProduct')
+const getProductDetails = require('../controller/product/getProductDetails');
+const addToCartController = require('../controller/cart/addToCartController');
+const countAddToCartProduct = require('../controller/cart/countAddToCartProduct');
+const addToCartViewProduct = require('../controller/cart/addToCartViewProduct');
 
 
 
@@ -36,14 +42,15 @@ router.get('/alluser', allUsers)
 router.post('/upload_product', authToken, uploadProductController )
 router.get('/get-product', getProductController )
 router.post('/update-product', authToken, updateProductController)
+router.get('/get-productCategory', getCategoryProduct)
+router.post('/category-WiseProduct', getCategoryyWiseProduct)
+router.post('/product-details', getProductDetails)
 
-
-
-
-
-
-
-
+        
+//add to cart
+router.post('/addToCart', authToken, addToCartController)
+router.get('/countAddToCartProduct', authToken, countAddToCartProduct)
+router.get('/view-cart-product', authToken, addToCartViewProduct)
 
 
 module.exports= router
