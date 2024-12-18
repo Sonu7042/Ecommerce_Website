@@ -3,7 +3,11 @@ const mongoose=require("mongoose")
 
 
 const addToCart= new mongoose.Schema({
-    productId : String,
+    productId : {
+        ref: "Product",
+        type: String
+
+    },
     quantity : Number,
     userId : String
 },

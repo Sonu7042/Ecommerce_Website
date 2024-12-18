@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./componet/Header";
 import Footer from "./componet/Footer";
@@ -11,8 +11,11 @@ import { useDispatch } from "react-redux";
 import { setUserDetails } from "./redux/userSlice";
 import Context from "./context";
 
+
 const App = () => {
   const dispatch = useDispatch();
+
+  const [cartProductCount, setCartProductCount]=useState(0)
 
   const fetchCurrrentDetails = async () => {
     const response = await axios.get(SummaryApi.current_user.url, {
@@ -25,11 +28,28 @@ const App = () => {
     
   };
 
+
+
+
+  const fetchProductAddToCart=async()=>{
+    const response= await axios.get(SummaryApi.addToCartProductCount.url,{
+      headers:{
+        token: localStorage.getItem("token")
+      }
+    })
+    // console.log(response)
+
+    setCartProductCount(response.data.data.count)
+    
+  }
+
   
   useEffect(() => {
     if (localStorage.getItem("token")) {
       fetchCurrrentDetails();
     }
+
+    fetchProductAddToCart()
   }, []);
 
   return (
@@ -37,6 +57,11 @@ const App = () => {
       <Context.Provider
         value={{
           fetchCurrrentDetails, //current user details function
+          fetchProductAddToCart, //function of no of count item add in cart
+          cartProductCount   // count value of item add in  cart
+
+
+
         }}
       >
         <ToastContainer autoClose="1000" />

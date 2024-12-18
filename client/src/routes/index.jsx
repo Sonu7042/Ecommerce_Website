@@ -11,6 +11,7 @@ import AdminPanel from "../page/AdminPanel.jsx";
 import Allusers from "../page/Allusers.jsx";
 import AllProducts from "../page/AllProducts.jsx";
 import ProductDetails from "../page/ProductDetails.jsx";
+import Cart from "../page/Cart.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
         <Route path="allProducts" element={<AllProducts />} />
       </Route>
 
+      <Route path="cart" element={<Cart/>}/>
       <Route path="product/:id"  element={<ProductDetails/>}/>
       
 

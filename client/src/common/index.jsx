@@ -58,6 +58,22 @@ const SummaryApi={
     addToCarProduct:{
         url:`${domain}/addToCart`,
         method:'post'
+    },
+    addToCartProductCount:{
+        url:`${domain}/countAddToCartProduct`,
+        method:"get"
+    },
+    addToCartProductView:{
+        url: `${domain}/view-cart-product`,
+        method: "get"
+    },
+    deleteAddToCartProduct:{
+        url: `${domain}/delete-cart-product`,
+        method: "post"
+    },
+    updateAddToCartProduct:{
+        url: `${domain}/update-cart-product`,
+        method: "post"
     }
 
 

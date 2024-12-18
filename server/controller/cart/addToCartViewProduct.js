@@ -1,11 +1,12 @@
 const addToCartModel= require('../../model/cartProduct')
 
 
-const addToCartViewProduct= async()=>{
+const addToCartViewProduct= async(req, res)=>{
     try{
 
         const userId= req.userId
-        const allProduct = await addToCartModel.find({userId: userId})
+        const allProduct = await addToCartModel.find({userId: userId}).populate("productId")
+        // console.log(allProduct)
 
         res.status(200).json({
             message: "All Product",

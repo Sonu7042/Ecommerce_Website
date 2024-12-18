@@ -1,11 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import fetchCategoryWiseProduct from '../helper/fetchCategoryWiseProduct'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
+import Context from '../context';
+import addToCart from '../helper/addtoCard';
+import { Link } from 'react-router-dom';
 
 const VerticalCardProduct = ({categgory, heading}) => {
 
   const [data, setData]=useState([])
+
+  const {fetchProductAddToCart}= useContext(Context)
 
 
 
@@ -13,6 +18,10 @@ const VerticalCardProduct = ({categgory, heading}) => {
   const loadingList= new Array(13).fill(null)
   
 
+  const hanldeAddToCart=async(e, id)=>{
+     await addToCart(e, id)
+    fetchProductAddToCart()
+  }
 
     const fetchData=async()=>{
       setLoading(true)
@@ -79,7 +88,7 @@ const VerticalCardProduct = ({categgory, heading}) => {
             ):(
               data.map((product, index)=>{
                 return(
-                  <div key={index} className='w-full min-w-[280px] md:min-w-[320px] md:max-w-[320px]  max-w-[280px]  bg-white rounded-sm  '>
+                  <Link to={"product/"+product?._id} key={index} className='w-full min-w-[280px] md:min-w-[320px] md:max-w-[320px]  max-w-[280px]  bg-white rounded-sm  '>
                   <div className='bg-slate-200 h-48 min-w-[120px] md:min-w-[145px] p-4 flex justify-center items-center'>
                     <img src={product.productImages[0]} alt="image" className='object-scale-down h-full hover:scale-110 transition-all mix-blend-multiply' />
 
@@ -93,11 +102,11 @@ const VerticalCardProduct = ({categgory, heading}) => {
                       <p className='text-slate-500 line-through '>{`₹${product?.price}`}</p>
                       <p></p>
                     </div>
-                    <button className='text-sm text-white px-3 py-0.5 rounded-full w-full bg-red-600'>Add to Cart</button>
+                    <button className='text-sm text-white px-3 py-0.5 rounded-full w-full bg-red-600' onClick={(e)=>hanldeAddToCart(e, product?._id)}>Add to Cart</button>
 
                   </div>
 
-                </div>
+                </Link>
                 
 
                 )

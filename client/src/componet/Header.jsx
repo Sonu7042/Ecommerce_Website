@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, {  useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -7,10 +7,14 @@ import { IoSearchSharp } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import role from "../common/role";
 import { setUserDetails } from "../redux/userSlice";
+import Context from "../context";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch= useDispatch()
+
+  const {cartProductCount}= useContext(Context)
+
   
 
   const [menuDisplay, setMenuDisplay] = useState(false);
@@ -84,7 +88,7 @@ const Header = () => {
               </span>
 
               <div className="bg-red-500 text-white p-2 w-5 h-5 rounded-full flex items-center justify-center absolute -top-2  -right-3">
-                <p>{"0"}</p>
+                <p>{cartProductCount}</p>
               </div>
             </Link>
           )}

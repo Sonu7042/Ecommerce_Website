@@ -7,6 +7,7 @@ const addToCartController = async (req, res) => {
     const currentUser = req.userId;
 
     const isProductAvailable = await addToCartModel.findOne({ productId });
+  
 
     if (isProductAvailable) {
       return res.json({

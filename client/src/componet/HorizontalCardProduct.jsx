@@ -1,17 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import fetchCategoryWiseProduct from '../helper/fetchCategoryWiseProduct'
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 import addToCart from '../helper/addtoCard';
+import Context from '../context';
 
 const HorizontalCardProduct = ({categgory, heading}) => {
 
   const [data, setData]=useState([])
-  // console.log(data)
+
+  const {fetchProductAddToCart}=useContext(Context)
 
   const [loading, setLoading]=useState(false)
   const loadingList= new Array(13).fill(null)
+
+
+  const handleAddToCart=async(e, id)=>{
+    e.stopPropagation()
+    await addToCart(e, id)
+    fetchProductAddToCart()
+  }
 
 
   
@@ -93,7 +102,7 @@ const HorizontalCardProduct = ({categgory, heading}) => {
                       <p className='text-red-600 font-medium '>{`₹${product?.sellingPrice}`}</p>
                       <p className='text-slate-500 line-through'>{`₹${product?.price}`}</p>
                     </div>
-                    <button className='text-sm text-white px-3 py-0.5 rounded-full w-full bg-red-600 z-10' onClick={(e)=>addToCart(e, product?._id)}>Add to Cart</button>
+                    <button className='text-sm text-white px-3 py-0.5 rounded-full w-full bg-red-600 z-10' onClick={(e)=>handleAddToCart(e, product?._id)}>Add to Cart</button>
 
                   </div>
 
