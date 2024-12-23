@@ -1,6 +1,6 @@
 
 
-const domain="http://localhost:9000"
+const domain="http://localhost:8000"
 // const domain= "https://ecommerce-website-alpha-five.vercel.app"
 
 
@@ -74,6 +74,14 @@ const SummaryApi={
     updateAddToCartProduct:{
         url: `${domain}/update-cart-product`,
         method: "post"
+    },
+    filterProduct:{
+        url: `${domain}/filter-product`,
+        method: "post"
+    },
+    searchProduct:{
+        url:`${domain}/search`,
+        method: "get"
     }
 
 

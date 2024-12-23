@@ -17,7 +17,6 @@ const HorizontalCardProduct = ({categgory, heading}) => {
 
 
   const handleAddToCart=async(e, id)=>{
-    e.stopPropagation()
     await addToCart(e, id)
     fetchProductAddToCart()
   }
@@ -31,10 +30,10 @@ const HorizontalCardProduct = ({categgory, heading}) => {
       setData(categoryProduct.data.data)
     }
 
-  
+
+
     useEffect(()=>{
       fetchData()
-
     }, [])
 
 
@@ -102,7 +101,8 @@ const HorizontalCardProduct = ({categgory, heading}) => {
                       <p className='text-red-600 font-medium '>{`₹${product?.sellingPrice}`}</p>
                       <p className='text-slate-500 line-through'>{`₹${product?.price}`}</p>
                     </div>
-                    <button className='text-sm text-white px-3 py-0.5 rounded-full w-full bg-red-600 z-10' onClick={(e)=>handleAddToCart(e, product?._id)}>Add to Cart</button>
+                    <button className='text-sm text-white px-3 py-0.5 rounded-full w-full bg-red-600 z-50' onClick={(e)=>handleAddToCart(e, product?._id)}>Add to Cart</button>
+
 
                   </div>
 

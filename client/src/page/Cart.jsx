@@ -21,7 +21,6 @@ const Cart = () => {
         token: localStorage.getItem("token" ),
       },
     });
-
     if (response.data) {
       setData(response.data.data);
       // console.log(response.data.data);
@@ -32,7 +31,9 @@ const Cart = () => {
   // console.log(data)
   
   useEffect(() => {
+    setLoading(true)
     addToCountProduct();
+    setLoading(false)
   }, []);
 
 
@@ -84,7 +85,8 @@ const Cart = () => {
     // console.log(response)
 
     if(response.data.success){
-      addToCountProduct()
+       addToCountProduct()
+      fetchProductAddToCart()
     }
     
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SummaryApi from "../common";
+import { Link } from "react-router-dom";
 
 const CategoryList = () => {
   const [loading, setLoading] = useState(false);
@@ -14,11 +15,11 @@ const CategoryList = () => {
     const response = await axios.get(SummaryApi.productCategory.url);
     setLoading(false)
     setCategoryProduct(response.data.data)
-    
   };
+
   useEffect(() => {
     fetchCategoryProduct();
-  }, []);
+  },[]);
 
 
   return (
@@ -35,14 +36,14 @@ const CategoryList = () => {
         ) : (
            categoryProduct.map((product, index)=>{
             return(
-              <div className="cursor-pointer" key={product + index} >
+              <Link to={"/product-category?category="+product?.category} className="cursor-pointer" key={product + index} >
 
                 <div className="h-16 w-16 md:h-20 rounded-full overflow-hidden bg-slate-200 p-4 flex justify-center items-center">
                   <img src={product?.productImages[0]} alt="image"  className="h-full object-scale-down  mix-blend-multiply  hover:scale-125 translate-all"/>
                 </div>
 
                 <p className="text-center text-sm md:text-base capitalize">{product?.category}</p>
-              </div>
+              </Link>
 
             )
               

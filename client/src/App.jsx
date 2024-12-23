@@ -25,9 +25,7 @@ const App = () => {
     });
     
       dispatch(setUserDetails(response.data.data));
-    
   };
-
 
 
 

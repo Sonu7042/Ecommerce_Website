@@ -1,7 +1,7 @@
 import React, {  useContext, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { IoSearchSharp } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,18 +9,22 @@ import role from "../common/role";
 import { setUserDetails } from "../redux/userSlice";
 import Context from "../context";
 
+
 const Header = () => {
   const navigate = useNavigate();
   const dispatch= useDispatch()
-
   const {cartProductCount}= useContext(Context)
-
-  
-
   const [menuDisplay, setMenuDisplay] = useState(false);
 
-
   const user = useSelector((state) => state?.user);
+
+
+  const searchInput= useLocation()
+  const urlSearch= new URLSearchParams(searchInput.search)
+  const searchQuery= urlSearch.getAll("q")
+  const [search, setSearch] = useState(searchQuery);
+  // console.log(search)
+
   
 
   const handleLogout = () => {
@@ -31,6 +35,21 @@ const Header = () => {
   };
 
 
+
+  const handleSearch=(e)=>{
+   const {value}= e.target
+   setSearch(value)
+   if(value){
+    navigate(`/search?q=${value}`)
+   }
+   else{
+    navigate("/search")
+   }
+   
+    
+
+  }
+
   return (
     <header className="h-16 shadow-md bg-white  fixed w-full z-40">
       <div className="h-full flex items-center  container mx-auto px-4 justify-between">
@@ -38,11 +57,12 @@ const Header = () => {
           <Link to="/">SevenStar</Link>
         </div>
 
-        <div className="  flex lg:flex item-center mx-w-sm border justify-center  rounded-full focus-within:shadow-md pl-2 ">
+        <div className=" flex lg:flex item-center mx-w-sm border justify-center  rounded-full focus-within:shadow-md pl-2 ">
           <input
             type="text"
             placeholder="search Product here"
             className="outline-none"
+            onChange={handleSearch}
           />
           <div className="flex items-center justify-center text-lg min-w-[50px] h-8 rounded-r-full ">
             <IoSearchSharp />

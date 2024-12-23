@@ -2,9 +2,10 @@ import SummaryApi from "../common";
 import axios from 'axios'
 import {toast} from 'react-toastify'
 
-
-
 const addToCart= async(e, id)=>{
+    e.stopPropagation()
+    e.preventDefault()
+
     console.log(id)
     const response=  await axios.post(SummaryApi.addToCarProduct.url,{productId: id},{
         headers:{
@@ -23,7 +24,5 @@ const addToCart= async(e, id)=>{
     return response
 
 }
-
-
 
 export default addToCart;

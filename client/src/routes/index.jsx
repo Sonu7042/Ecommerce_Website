@@ -12,6 +12,8 @@ import Allusers from "../page/Allusers.jsx";
 import AllProducts from "../page/AllProducts.jsx";
 import ProductDetails from "../page/ProductDetails.jsx";
 import Cart from "../page/Cart.jsx";
+import CategoryProduct from "../page/CategoryProduct.jsx";
+import SearchProduct from "../page/SearchProduct.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +29,8 @@ const router = createBrowserRouter(
 
       <Route path="cart" element={<Cart/>}/>
       <Route path="product/:id"  element={<ProductDetails/>}/>
+      <Route path="product-category" element={<CategoryProduct/>}/>
+      <Route path="search" element={<SearchProduct/>}/>
       
 
     </Route>

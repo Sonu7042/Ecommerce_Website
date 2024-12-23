@@ -5,9 +5,11 @@ const jwt = require("jsonwebtoken");
 const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (!email || !password) {
       throw new Error("Invalid credentials");
     }
+    
 
     const user = await userModel.findOne({ email });
     if (!user) {
