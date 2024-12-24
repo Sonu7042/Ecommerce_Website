@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import SummaryApi from "../common";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
+import addToCart from "../helper/addtoCard";
+import Context from "../context";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -11,6 +13,7 @@ const ProductDetails = () => {
   const [zoomImage, setzoomImage]=useState(false)
   const [loading, setLoading] = useState(false)
   const productImageListLoading=new Array(4).fill("")
+  const {fetchProductAddToCart} = useContext(Context);
 
   const [zoomImageCoordinate, setZoomImageCoordinate]=useState({x:0, y:0})
 //   console.log(zoomImageCoordinate)
@@ -41,12 +44,15 @@ const ProductDetails = () => {
   }, [params]);
 
 
-  const  handleBuyProduct=()=>{
+  const  handleBuyProduct=(e, id)=>{
 
   }
 
-  const handleAddToCart=()=>{
 
+
+  const handleAddToCart=async(e, id)=>{
+    await addToCart(e, id)
+    fetchProductAddToCart()
   }
 
 

@@ -14,7 +14,7 @@ const CategoryProduct = () => {
   const location = useLocation();
   const urlSearch = new URLSearchParams(location.search);
   const urlCategoryListinArray = urlSearch.getAll("category");
-  // console.log(urlCategoryListinArray)
+  console.log(urlCategoryListinArray)
   
 
   const urlCategoryListObject = urlCategoryListinArray.reduce((acc, el) => {
@@ -31,7 +31,6 @@ const CategoryProduct = () => {
     
     
     
-  
   useEffect(() => {
     const arrayOfCategory = Object.keys(selectCategory)
       .filter((categoryName) => selectCategory[categoryName]);

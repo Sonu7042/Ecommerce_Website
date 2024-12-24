@@ -4,6 +4,9 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import VerticalCard from "../componet/VerticalCard";
 
+
+
+
 const SearchProduct = () => {
   const query = useLocation();
   const [data, setData] = useState([]);
@@ -18,9 +21,22 @@ const SearchProduct = () => {
     
   };
 
-  useEffect(() => {
+
+  
+  useEffect(() => { 
+   const timer= setTimeout(()=>{
     fetchSearchProduct();
+
+   }, 500)
+
+   return ()=>{
+    clearTimeout(timer)
+   }
+   
+
   }, [query]);
+
+
 
   return (
     <div className="container mx-auto p-4">

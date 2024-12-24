@@ -2,10 +2,9 @@ const productModel = require("../../model/productModel");
 
 const searchProduct = async (req, res) => {
   try {
-    console.log("working")
+    // console.log("working")
     const query = req.query.q;
-
-    console.log(query)
+    // console.log(query)
     const regex = new RegExp(query, "i", "g");
 
     const products = await productModel.find({
@@ -20,14 +19,13 @@ const searchProduct = async (req, res) => {
       ],
     });
 
+
     res.status(200).json({
         message : "Search Product list",
         error : false,
         success : true,
         data  : products 
     })
-
-
 
 
   } catch (err) {

@@ -16,9 +16,9 @@ const filterProductController = async (req, res) => {
         }
         
 
-
         const products = await productModel.find({ category: { "$in": categoryList } });
 
+        
         return res.status(200).json({
             success: true,
             error: false,
