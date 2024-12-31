@@ -1,7 +1,7 @@
 
 
-const domain="http://localhost:8000"
-// const domain= "https://ecommerce-website-alpha-five.vercel.app"
+// const domain="http://localhost:8000"
+const domain= "https://ecommerce-website-alpha-five.vercel.app"
 
 
 const SummaryApi={
@@ -9,7 +9,7 @@ const SummaryApi={
         url: `${domain}/signup`,
         method:"post"   
     },
-
+    
     login:{
         url: `${domain}/login`,
         method:"post"
