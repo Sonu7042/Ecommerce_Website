@@ -46,8 +46,8 @@ const App = () => {
     if (localStorage.getItem("token")) {
       fetchCurrrentDetails();
     }
-
     fetchProductAddToCart()
+    
   }, []);
 
   return (
