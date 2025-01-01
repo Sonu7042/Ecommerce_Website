@@ -24,21 +24,21 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    // try {
       const response = await axios.post(SummaryApi.login.url, data);
       console.log(response);
-      
+
       if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.token);
         navigate("/");
         fetchCurrrentDetails()
       }
-    } catch (err) {
-      if (toast.error) {
-        toast.error("User  not found");
-      }
-    }
+    // } catch (err) {
+      // if (toast.error) {
+      //   // toast.error("User  not found");
+      // }
+    // }
   };
 
 
