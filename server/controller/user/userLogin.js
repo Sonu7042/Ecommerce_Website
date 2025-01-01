@@ -3,6 +3,8 @@ const userModel = require("../../model/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const SECRET_KEY="computer12345"
+
 
 
 const userLogin = async (req, res) => {
@@ -13,10 +15,10 @@ const userLogin = async (req, res) => {
       throw new Error("Invalid credentials");
     }
 
-    const secretKey = process.env.SECRET_KEY; // Ensure this is defined in your .env file
-    if (!secretKey) {
-      throw new Error("Secret key is not defined");
-    }
+    // const secretKey = process.env.SECRET_KEY; // Ensure this is defined in your .env file
+    // if (!secretKey) {
+    //   throw new Error("Secret key is not defined");
+    // }
 
     const user = await userModel.findOne({ email });
     console.log(user);
@@ -35,7 +37,7 @@ const userLogin = async (req, res) => {
       email: user.email,
     };
 
-    const token = jwt.sign(tokenData, process.env.secretKey, {
+    const token = jwt.sign(tokenData, SECRET_KEY, {
       expiresIn: 24 * 7 * 60 * 60,
     });
 
