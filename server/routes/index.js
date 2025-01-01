@@ -28,7 +28,12 @@ const searchProduct = require('../controller/product/searchProduct')
 
 //authication
 router.post('/signup', userSignUpController)
+
+console.log("one")
+
 router.post('/login', userLogin)
+
+console.log("two")
 
 
 //admin panel
