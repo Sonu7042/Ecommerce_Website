@@ -16,7 +16,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const {fetchCurrrentDetails}=useContext(Context)
+  const { fetchCurrrentDetails } = useContext(Context);
 
   const onchange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -24,24 +24,26 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // try {
-      const response = await axios.post(SummaryApi.login.url, data);
-      console.log(response);
+    
+    console.log(SummaryApi.login.url);
 
-      if (response.data.success) {
-        toast.success(response.data.message);
-        localStorage.setItem("token", response.data.token);
-        navigate("/");
-        fetchCurrrentDetails()
-      }
+    // try {
+    const response = await axios.post(SummaryApi.login.url, data);
+
+    console.log(response);
+
+    if (response.data.success) {
+      toast.success(response.data.message);
+      localStorage.setItem("token", response.data.token);
+      navigate("/");
+      fetchCurrrentDetails();
+    }
     // } catch (err) {
-      // if (toast.error) {
-      //   // toast.error("User  not found");
-      // }
+    // if (toast.error) {
+    //   // toast.error("User  not found");
+    // }
     // }
   };
-
-
 
   return (
     <div className="container mx-auto p-4  ">
