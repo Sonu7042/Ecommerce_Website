@@ -26,7 +26,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(SummaryApi.login.url, data);
-      // console.log(response);
+      console.log(response);
+      
       if (response.data.success) {
         toast.success(response.data.message);
         localStorage.setItem("token", response.data.token);
@@ -35,7 +36,7 @@ const Login = () => {
       }
     } catch (err) {
       if (toast.error) {
-        toast.error("User not found");
+        toast.error("User  not found");
       }
     }
   };
