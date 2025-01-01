@@ -9,10 +9,14 @@ const userLogin = async (req, res) => {
     if (!email || !password) {
       throw new Error("Invalid credentials");
     }
-    
+
+    const secretKey = process.env.SECRET_KEY; // Ensure this is defined in your .env file
+    if (!secretKey) {
+      throw new Error("Secret key is not defined");
+    }
 
     const user = await userModel.findOne({ email });
-    console.log(user)
+    console.log(user);
     if (!user) {
       throw new Error("User 1 not found");
     }
@@ -20,7 +24,7 @@ const userLogin = async (req, res) => {
     const checkPassword = await bcrypt.compare(password, user.password);
 
     if (!checkPassword) {
-        throw new Error("Invalid password");
+      throw new Error("Invalid password");
     }
 
     const tokenData = {
@@ -28,7 +32,7 @@ const userLogin = async (req, res) => {
       email: user.email,
     };
 
-    const token = jwt.sign(tokenData, process.env.serect_key, {
+    const token = jwt.sign(tokenData, process.env.secretKey, {
       expiresIn: 24 * 7 * 60 * 60,
     });
 
@@ -38,8 +42,6 @@ const userLogin = async (req, res) => {
       success: true,
       token: token,
     });
-
-
   } catch (err) {
     res.status(500).json({
       message: err.message || err,

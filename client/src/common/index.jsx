@@ -10,6 +10,7 @@ const SummaryApi={
         method:"post"   
     },
     
+
     login:{
         url: `${domain}/login`,
         method:"post"
