@@ -25,7 +25,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    console.log(SummaryApi.login.url);
+  
 
     // try {
     const response = await axios.post(SummaryApi.login.url, data);
@@ -33,6 +33,7 @@ const Login = () => {
     console.log(response);
 
     if (response.data.success) {
+      console.log("successfully called")
       toast.success(response.data.message);
       localStorage.setItem("token", response.data.token);
       navigate("/");

@@ -1,4 +1,5 @@
 const jwt= require('jsonwebtoken')
+const SECRET_KEY="computer12345"
 
 const authToken=async(req, res, next)=>{
     try{
@@ -15,7 +16,7 @@ const authToken=async(req, res, next)=>{
             })
         }
 
-        jwt.verify(token, process.env.serect_key, (err, decoded)=>{
+        jwt.verify(token, SECRET_KEY, (err, decoded)=>{
             if(err){
                 console.log("error auth", err)
             }

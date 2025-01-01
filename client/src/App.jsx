@@ -43,7 +43,9 @@ const App = () => {
 
   
   useEffect(() => {
+    console.log(localStorage.getItem("token"))
     if (localStorage.getItem("token")) {
+
       fetchCurrrentDetails();
     }
     fetchProductAddToCart()
