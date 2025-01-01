@@ -12,6 +12,7 @@ const userLogin = async (req, res) => {
     
 
     const user = await userModel.findOne({ email });
+    console.log(user)
     if (!user) {
       throw new Error("User not found");
     }
