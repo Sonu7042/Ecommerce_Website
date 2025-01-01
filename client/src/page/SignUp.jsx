@@ -49,6 +49,8 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(SummaryApi.signup.url)
+
 
     if (data.password === data.confirmPassword) {
       const response = await axios.post(SummaryApi.signup.url, data);
