@@ -14,15 +14,10 @@ const userLogin = async (req, res) => {
       throw new Error("Invalid credentials");
     }
 
-    // const secretKey = process.env.SECRET_KEY; // Ensure this is defined in your .env file
-    // if (!secretKey) {
-    //   throw new Error("Secret key is not defined");
-    // }
-
     const user = await userModel.findOne({ email });
-    console.log(user);
+
     if (!user) {
-      throw new Error("User 1 not found");
+      throw new Error("User  not found");
     }
 
     const checkPassword = await bcrypt.compare(password, user.password);
