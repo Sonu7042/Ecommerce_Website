@@ -16,9 +16,8 @@ const SignUp = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    profilePic:""
+    profilePic: "",
   });
-
 
   const [file, setFile] = useState("");
 
@@ -27,22 +26,16 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-
-  
   const handlePicUpload = async (e) => {
     const file = e.target.files[0];
-     const uploadImage= await imageUpload(file);
-    
+    const uploadImage = await imageUpload(file);
+
     const imagePic = await imageTobase64(file);
     setFile(imagePic);
-    setData((pre)=>{
-      return {...pre, profilePic:uploadImage.url}
-    })
-  
+    setData((pre) => {
+      return { ...pre, profilePic: uploadImage.url };
+    });
   };
-
-
-
 
   const onchange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -52,15 +45,18 @@ const SignUp = () => {
     e.preventDefault();
 
     if (data.password === data.confirmPassword) {
-      const response = await axios.post(SummaryApi.signup.url, data);
+      try {
+        const response = await axios.post(SummaryApi.signup.url, data);
 
-      if (response.data.success) {
-        toast.success(response.data.message);
-        navigate("/login");
-      }
+        if (response.data.success) {
+          toast.success(response.data.message);
+          navigate("/login");
+        } else {
+          toast.error(response.data.message);
+        }
 
-      if (response.error) {
-        toast.error(response.message);
+      } catch (err) {
+        toast.error("Already user exist");
       }
     } else {
       toast.error("Please check password and confirmPassword");
