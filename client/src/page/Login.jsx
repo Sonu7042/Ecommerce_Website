@@ -22,15 +22,15 @@ const Login = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
   
-
-    // try {
+    try {
     const response = await axios.post(SummaryApi.login.url, data);
-
-    console.log(response);
+    // console.log(response);
 
     if (response.data.success) {
       console.log("successfully called")
@@ -39,12 +39,16 @@ const Login = () => {
       navigate("/");
       fetchCurrrentDetails();
     }
-    // } catch (err) {
-    // if (toast.error) {
-    //   // toast.error("User  not found");
-    // }
-    // }
+    } catch (err) {
+    if (toast.error) {
+      toast.error("User not found");
+    }
+    }
   };
+
+
+
+
 
   return (
     <div className="container mx-auto p-4  ">

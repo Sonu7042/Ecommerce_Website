@@ -1,5 +1,4 @@
 const jwt= require('jsonwebtoken')
-const SECRET_KEY="computer12345"
 
 const authToken=async(req, res, next)=>{
     try{
@@ -7,7 +6,6 @@ const authToken=async(req, res, next)=>{
         // console.log(token)
        
        
-        
         if(!token){
             return res.status(401).json({
                 message:'Access denied. No token provided.',
@@ -16,7 +14,7 @@ const authToken=async(req, res, next)=>{
             })
         }
 
-        jwt.verify(token, SECRET_KEY, (err, decoded)=>{
+        jwt.verify(token, process.env.SECRET_KEY, (err, decoded)=>{
             if(err){
                 console.log("error auth", err)
             }

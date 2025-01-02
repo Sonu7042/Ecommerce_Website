@@ -3,7 +3,6 @@ const userModel = require("../../model/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const SECRET_KEY="computer12345"
 
 
 
@@ -37,7 +36,7 @@ const userLogin = async (req, res) => {
       email: user.email,
     };
 
-    const token = jwt.sign(tokenData, SECRET_KEY, {
+    const token = jwt.sign(tokenData, process.env.SECRET_KEY, {
       expiresIn: 24 * 7 * 60 * 60,
     });
 
