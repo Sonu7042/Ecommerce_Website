@@ -17,6 +17,7 @@ const App = () => {
 
   const [cartProductCount, setCartProductCount]=useState(0)
 
+  
   const fetchCurrrentDetails = async () => {
     const response = await axios.get(SummaryApi.current_user.url, {
       headers: {
@@ -36,22 +37,23 @@ const App = () => {
       }
     })
     // console.log(response)
-
+    
     setCartProductCount(response.data.data.count)
     
   }
-
+  
   
   useEffect(() => {
-    console.log(localStorage.getItem("token"))
+    // console.log(localStorage.getItem("token"))
     if (localStorage.getItem("token")) {
-
       fetchCurrrentDetails();
+      fetchProductAddToCart()
     }
-    fetchProductAddToCart()
     
   }, []);
-
+  
+  console.log(cartProductCount)
+  
   return (
     <>
       <Context.Provider

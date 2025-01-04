@@ -31,6 +31,7 @@ const Header = () => {
     navigate("/login");
     dispatch(setUserDetails(null))
     
+    
   };
 
 
