@@ -1,5 +1,5 @@
 
-
+// all api
 // const domain="http://localhost:8000"
 const domain= "https://ecommerce-website-alpha-five.vercel.app"
 
@@ -18,7 +18,7 @@ const SummaryApi={
 
     current_user:{
         url: `${domain}/user-details `,
-        method:"get"
+        method:"get" 
     },
     allUsers:{
         url:`${domain}/alluser`,
