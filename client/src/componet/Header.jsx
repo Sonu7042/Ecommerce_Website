@@ -56,7 +56,7 @@ const Header = () => {
           <Link to="/">SevenStar</Link>
         </div>
 
-        <div className=" flex lg:flex item-center mx-w-sm border justify-center  rounded-full focus-within:shadow-md pl-2 ">
+        <div className=" hidden lg:flex item-center mx-w-sm border justify-center  rounded-full focus-within:shadow-md pl-2 ">
           <input
             type="text"
             placeholder="search Product here"
